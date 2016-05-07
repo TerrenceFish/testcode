@@ -1,0 +1,128 @@
+.hidden
+{
+	filter: alpha(opacity=0);
+	-moz-opacity: 0;
+	opacity: 0;
+	z-index: 0;
+	margin: 0;
+	padding: 0;
+	width: 16px;
+	height:16px;
+}
+/* input */
+input[type="text"]{
+	font-family:'Microsoft YaHei';
+	height:26px;
+	line-height:26px;
+	border:1px solid #d7d8dd;
+	border-radius:4px;
+	text-indent:5px;
+	font-size:14px;
+	color:#34495e;
+}
+/* checkbox */
+span.checkbox, span.checkbox-hover, span.checkbox-checked, span.checkbox-checked-hover
+{
+	background: url(../images/bg_checkbox.png) 0 0 no-repeat;
+	width: 18px;
+	height:18px;
+	position: absolute;
+	z-index: 1;
+	cursor: pointer;
+	margin:0px;
+	padding:0px;
+}
+span.checkbox-hover
+{
+	background: url(../images/bg_checkbox.png) 0 0px no-repeat;
+}
+span.checkbox-checked
+{
+	background: url(../images/bg_checkbox.png) 0 -18px no-repeat;
+}
+span.checkbox-checked-hover
+{
+	background: url(../images/bg_checkbox.png) 0 -18px no-repeat;
+}
+
+
+
+/* select */
+div.select
+{
+	display: -moz-inline-stack;
+	display: inline-block;
+	zoom: 1;
+	*display: inline;
+	vertical-align: bottom;
+}
+div.select div, div.select div.open
+{
+	background: url(../images/select-l.png) no-repeat 0 0;
+	height: 28px;
+	padding-left: 5px;
+	font-size: 14px;
+	color: #34495e;
+	cursor: pointer;
+	margin-right:-5px;
+	font-family:'Microsoft YaHei';
+}
+div.select div span, div.select div.open span
+{
+	background: url(../images/select-r.png) no-repeat right 0;
+	height: 28px;
+	line-height: 28px;
+	display: block;
+}
+div.select div:hover
+{
+	background: url(../images/select-l.png) no-repeat 0 0px;
+}
+div.select div:hover span
+{
+	background: url(../images/select-r.png) no-repeat right 0px;
+}
+div.select div.open
+{
+	background: url(../images/select-l.png) no-repeat 0 0px;
+}
+div.select div.open span
+{
+	background: url(../images/select-r.png) no-repeat right 0px;
+}
+div.select ul
+{
+	font-family:'Microsoft YaHei';
+	list-style: none;
+	background-color: #FFFFFF;
+	border-color: #d7d8dd #d7d8dd #d7d8dd;
+	border-style: solid;
+	border-width: 1px;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	z-index: 999;
+	font-size:14px;
+	overflow:hidden;
+}
+div.select li
+{
+	padding: 0px 5px;
+	cursor: default;
+	height:28px;
+	line-height:28px;
+}
+div.select li.hover
+{
+	background: #d7d8dd;
+	color: #6B6B6B;
+	
+}
+/* textarea */
+textarea{
+	border-radius:4px;
+	border:1px solid #d7d8dd;
+	padding:5px;
+	font-size:14px;
+	color:#34495e;
+}

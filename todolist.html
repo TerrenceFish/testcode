@@ -1,0 +1,220 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,  initial-scale=1" />
+<title>todo list</title>
+<link type="text/css" rel="stylesheet" href="css/style.css" />
+<link type="text/css" rel="stylesheet" href="css/form.css" />
+<!-- <script src="js/main.js" type="text/javascript"></script> -->
+<style>
+	.remove{
+		display: none;	
+}
+#adda{
+  display: none;
+  background:#efeff1;
+  border-bottom: 1px solid #d7d8dd;
+  height:34px;
+
+}
+</style>
+</head>
+<body>
+ <div class="list_table_header">
+           	    <table width="100%">
+            	    <tr>
+            	    <td width="80">事物ID：</td>
+            	    <td><input type="text" name="textfield" id="textfield" style="width:90%" /></td>
+            	    <td width="80">完成日期：</td>
+            	    <td><input type="text" name="textfield2" id="textfield2" style="width:90%" /></td>
+            	 <td width="100"><button href="#" class="blue_button"  onclick="test()">查询</button></td>
+            	    <td><a href="#" class="unfold_arr" onclick="unflod()"></a></td>
+       	            </tr>
+          	 </table>
+            </div>
+            <div class="list_table">
+           	  <table width="100%" id="table">
+            	<tr id="tr0">
+            	    <td>事物ID</td>
+            	    <td>名称</td>
+            	    <td>日期</td>
+            	    <td>类别</td>
+            	    <td>包含人员</td>
+            	    <td>备注</td>
+            	    <td width="80">&nbsp;</td>
+       	        </tr>
+            	<tr id="tr1">
+            	    <td id="code1">1</td>
+            	    <td>项目1</td>
+            	    <td>2015.9</td>
+            	    <td>前端</td>
+            	    <td>Renault,Terry</td>
+            	    <td>这里是备注</td>
+            	    <td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="#" class="delete" title="删除" onclick="del(1)"></a></td>
+       	        </tr>
+            	<tr id="tr2">
+            	    <td id="code1">2</td>
+            	    <td>项目2</td>
+            	    <td>2015.10</td>
+            	    <td>后台开发</td>
+            	    <td>Jim,Tom</td>
+            	    <td>这里是备注</td>
+            	    <td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="#" class="delete" title="删除" onclick="del(2)"></a></td>
+       	        </tr>
+            	<tr id="tr3">
+            	    <td id="code1">3</td>
+            	    <td>项目3</td>
+            	    <td>2015.11</td>
+            	    <td>网站维护</td>
+            	    <td>Lily</td>
+            	    <td>这里是备注</td>
+            	    <td><a href="科别信息维护.html" class="edit" title="编辑"></a><a href="#" class="delete" title="删除" onclick="del(3)"></a></td>
+       	        </tr>
+                <!-- <tr><td><button  style="width:100px;background: blue;height:30px;color:white;borderadius:10px;" onclick="add()"  id="btn1">增加</button></td></tr> -->
+          	  </table>
+              <div id="but">
+                <button  style="width:100px;background: #00947f;height:30px;color:white;border-radius:5px;" onclick="add()"  id="btn1">增加</button>
+              </div>
+              <div id="adda">
+                <label>事物id</label><input type="text" id="things"/>
+                <label>名称</label><input type="text" id="name"/>
+                <label>日期</label><input type="text" id="date">
+                <label>类别</label><input type="text" id="kinds">
+                <label>包含人员</label><input type="text" id="people">
+                <label>备注</label><input type="text" id="more">
+                <button id="save"  style="width:100px;background: #00947f;height:30px;color:white;border-radius5px;" onclick="SAVE()">保存</button>
+              </div>
+            </div>
+            <script>
+      //展开，关闭表格信息
+    function unflod(){
+                var list_table=document.getElementsByClassName('list_table');
+                if(list_table[0].style.display=="block"){
+                  list_table[0].style.display="none";
+                }else{
+                  list_table[0].style.display="block";
+                }
+              }
+     //查询
+      function test(){
+      var Textfield=document.getElementById('textfield');
+     /* var Textfield3=document.getElementById('textfield3');*/
+      var Textfield2=document.getElementById('textfield2');
+        var table=document.getElementById("table");
+          var tr1=document.getElementById("tr1");
+          var tr2=document.getElementById("tr2");
+
+           //var rows = table.rows.length;
+          // var cols=table.cols.length;
+          var oTd=document.getElementById("code1"); 
+             /*if(oTd.innerHTML==Textfield.value)
+              {
+               tr1.style.display="block";
+               
+              }
+              else
+              {
+                 tr1.style.display="none";
+               }     
+         }*/
+        var rows=table.rows;//定义变量行。
+         for(var i=1;i<rows.length;i++)
+        {
+            if(Textfield.value == ""||Textfield2.value== ""){
+              rows[i].style.display="";
+              Textfield.setAttribute("placeholder","不能为空");
+              Textfield2.setAttribute("placeholder","不能为空");
+            }
+            else 
+            {
+              for(var j=0;j<rows[i].cells.length;j++){
+                if(rows[i].cells[j].innerHTML==Textfield.value||rows[i].cells[j+2].innerHTML==Textfield2.value){
+                  rows[i].style.display="";       //不能写block，因为会被块化，查询display。
+                break;             //结束循环。
+                  
+                }else{
+                   rows[i].style.display="none";
+                   //rows[i].style.visibility="hide";
+                break;
+                }
+            }  
+           }
+        }
+    }
+    
+    //删除
+    function del(v){
+        // var tr=document.getElementById('table').getElementsByTagName('tr');
+        // var tbody=document.getElementById('table').getElementsByTagName("tbody")[0];
+        //       tbody.removeChild(tbody.childNodes[v]);
+        document.getElementById('tr'+v).remove();
+    }
+  //增加
+     
+
+          var table=document.getElementById("table");
+            var adda=document.getElementById("adda");
+
+     function add(){
+              var obtn1=document.getElementById("btn1");
+              var but=document.getElementById("but")
+            /*  var newTr=document.createElement("tr");
+              
+
+              newTr.innerHTML="<td>"+things+"</td><td>2</td> <td>3</td> <td></td> <td></td> <td></td> <td></td>"
+            
+          
+              table.appendChild(newTr);*/
+               table.style.display="none";
+               adda.style.display="block";
+               but.style.display="none";
+
+     }
+
+     var n = 4;
+     function SAVE(){
+       var things=document.getElementById("things").value;
+        var name=document.getElementById("name").value;
+        var date=document.getElementById("date").value;
+        var kinds=document.getElementById("kinds").value;
+        var people=document.getElementById("people").value;
+        var more=document.getElementById("more").value;
+        // var last =document.getElementById("last");
+      /* last.setAttribute("className","edit");
+       last.setAttribute("className","delete");*/
+             table.style.display="block";
+               adda.style.display="none";
+               but.style.display="block";
+            var ntr=document.createElement("tr");
+            ntr.setAttribute("id",'tr'+n);
+              var enter=[];
+             /* alert(things);*/
+              enter[0]=things;
+              enter[1]=name;
+              enter[2]=date;
+              enter[3]=kinds;
+              enter[4]=people;
+              enter[5]=more;
+              // enter[6]=last;
+             /* alert(enter[1]);*/
+              for(var i=0;i<enter.length;i++){
+              //创建td
+                  var td=document.createElement("td");
+                  //搜索ID号
+                   td.setAttribute("id","code1");
+                //文本追加到td
+                  td.innerHTML=enter[i];  
+                  td.setAttribute("height","34px")
+                     //把td添加到tr
+                  ntr.appendChild(td);
+            }
+
+            var tded=document.createElement("td");
+            tded.innerHTML='<a href="科别信息维护.html" class="edit" title="编辑"></a>'+'<a href="#" class="delete" title="删除" onclick="del('+n+')"></a>';
+            ntr.appendChild(tded);
+      table.appendChild(ntr);
+      n++;
+ }
+            </script>
+ </body>
+</html>
